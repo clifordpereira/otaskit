@@ -21,5 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('employees', EmployeeController::class);
-Route::resource('tasks', TaskController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('employees', EmployeeController::class);
+
+    Route::get('/tasks/start_task/{task}', [TaskController::class, 'startTask']);
+    Route::get('/tasks/end_task/{task}', [TaskController::class, 'endTask']);
+    Route::resource('tasks', TaskController::class);
+});

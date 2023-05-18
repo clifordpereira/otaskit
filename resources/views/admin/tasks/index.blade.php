@@ -20,6 +20,8 @@
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Status</th>
+                                    <th>Start Task</th>
+                                    <th>End Task</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -31,6 +33,26 @@
                                         <td>{{ $task->title }}</td>
                                         <td>{{ $task->description }}</td>
                                         <td>{{ $task->status }}</td>
+                                        <td>
+                                            @if ('In Progress' == $task->status || 'Done' == $task->status)
+                                                Started
+                                            @else
+                                                <a href='/tasks/start_task/{{ $task->id }}' class="btn btn-info">
+                                                    Start
+                                                </a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ('Done' == $task->status)
+                                                Ended
+                                            @elseif ('In Progress' == $task->status)
+                                                <a href='/tasks/end_task/{{ $task->id }}' class="btn btn-info">
+                                                    End
+                                                </a>
+                                            @else
+                                                Not Started
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href='/tasks/{{ $task->id }}/edit' class="btn btn-secondary">
                                                 <i class="fa fa-pencil"></i>

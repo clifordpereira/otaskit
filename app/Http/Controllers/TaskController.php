@@ -98,4 +98,20 @@ class TaskController extends Controller
         $task->delete();
         return redirect('/tasks');
     }
+
+    public function startTask(Task $task)
+    {
+        $task->status = 'In Progress';
+        $task->save();
+
+        return redirect('/tasks');
+    }
+
+    public function endTask(Task $task)
+    {
+        $task->status = 'Done';
+        $task->save();
+
+        return redirect('/tasks');
+    }
 }
