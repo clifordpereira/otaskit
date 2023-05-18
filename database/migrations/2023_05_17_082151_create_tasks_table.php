@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('employee_id')->nullable()->constrained();
             $table->string('title', 100);
             $table->string('description');
-            $table->boolean('status');
+            $table->enum('status', ['Unassigned', 'Assigned', 'In Progress', 'Done'])
+                ->default('Unassigned');
             $table->timestamps();
         });
     }

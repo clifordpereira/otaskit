@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,7 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::with('employee')->latest()->get();
+        return view('admin.tasks.index', compact('tasks'));
     }
 
     /**
@@ -21,7 +23,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $employees = Employee::all();
+        return view('admin.tasks.create', compact('employees'));
     }
 
     /**
@@ -29,7 +32,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:100',
+            'description' => 'required|string|max:250',
+            'employee_id' => 'numeric|nullable',
+        ]);
+
+        if ('' != $request->employee_id) {
+            $validated += ['status' => 'Assigned'];
+        }
+
+        Task::create($validated);
+
+        // The blog post is valid...
+
+        return redirect('/tasks');
     }
 
     /**
@@ -45,7 +62,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $employees = Employee::all();
+        return view('admin.tasks.edit', compact('task', 'employees'));
     }
 
     /**
@@ -53,7 +71,23 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:100',
+            'description' => 'required|string|max:250',
+            'employee_id' => 'numeric|nullable',
+        ]);
+
+        if ('' != $request->employee_id) {
+            $validated += ['status' => 'Assigned'];
+        } elseif ('' == $request->employee_id) {
+            $validated += ['status' => 'Unassigned'];
+        }
+
+        $task->update($validated);
+
+        // The blog post is valid...
+
+        return redirect('/tasks');
     }
 
     /**
@@ -61,6 +95,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect('/tasks');
     }
 }

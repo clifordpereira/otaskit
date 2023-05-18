@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
+                <a href="/" class="btn btn-info">Home</a>
                 <div class="card">
                     <div class="card-header card-header-warning">
                         <h4 class="card-title">Employees</h4>
