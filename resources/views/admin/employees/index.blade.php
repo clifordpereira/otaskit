@@ -37,8 +37,8 @@
                                         <td>{{ $employee->department }}</td>
                                         <td>{{ $status[$employee->status] }}</td>
                                         <td>
-                                            <a href='/employees/{{ $employee->id }}/edit' class="btn btn-secondary">
-                                                <i class="fa fa-pencil"></i>
+                                            <a href='/employees/{{ $employee->id }}/edit' class="btn btn-warning">
+                                                Edit
                                             </a>
                                         </td>
                                         <td>

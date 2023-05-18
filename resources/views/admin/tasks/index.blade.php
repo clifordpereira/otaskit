@@ -54,8 +54,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href='/tasks/{{ $task->id }}/edit' class="btn btn-secondary">
-                                                <i class="fa fa-pencil"></i>
+                                            <a href='/tasks/{{ $task->id }}/edit' class="btn btn-warning">
+                                                Edit
                                             </a>
                                         </td>
                                         <td>
