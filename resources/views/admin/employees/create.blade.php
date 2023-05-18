@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="name">Name: </label>
 
-                            <input id="name"
+                            <input name="name" id="name"
                                 type="text"
                                 class="@error('name') is-invalid @else is-valid @enderror form-control">
 
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="email">Email: </label>
 
-                            <input id="email"
+                            <input name="email" id="email"
                                 type="email"
                                 class="@error('email') is-invalid @else is-valid @enderror form-control">
 
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label for="mobile_no">Mobile No: </label>
 
-                            <input id="mobile_no"
+                            <input name="mobile_no" id="mobile_no"
                                 type="text"
                                 class="@error('mobile_no') is-invalid @else is-valid @enderror form-control">
 

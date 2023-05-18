@@ -13,7 +13,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
+        return view('admin.employees.index', compact('employees'));
     }
 
     /**
@@ -30,11 +31,14 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|unique:employees|max:100',
             'name' => 'required|string|max:50',
+            'email' => 'required|unique:employees|max:100',
+            'mobile_no' => 'alpha_num',
             'department' => 'string',
-            'status' => 'required|number',
+            'status' => 'required|numeric',
         ]);
+
+        Employee::create($validated);
 
         // The blog post is valid...
 
