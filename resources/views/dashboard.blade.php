@@ -14,8 +14,12 @@
                         </div>
                     @endif
 
-                    <a href="/employees">Employees</a>
-                    {{-- <a href="/tasks">Tasks</a> --}}
+                    <div class="main-menu">
+                        <ul>
+                            <li><a href="/employees">Employees</a></li>
+                            <li><a href="/tasks">Tasks</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

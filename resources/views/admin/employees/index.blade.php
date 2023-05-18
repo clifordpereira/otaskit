@@ -35,8 +35,27 @@
                                         <td>{{ $employee->mobile_no }}</td>
                                         <td>{{ $employee->department }}</td>
                                         <td>{{ $status[$employee->status] }}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                                            <a href='/employees/{{ $employee->id }}/edit' class="btn btn-secondary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form class="form-horizontal" role="form" method="POST" action="{{ url('employees/'.$employee->id) }}"
+                                                onsubmit="return confirm('Are you sure you wish to delete this record?');"
+                                            >
+                                                @method('DELETE')
+                                                @csrf
+
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-2">
+                                                        <button type="submit" class="btn btn-danger">
+                                                            Del
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

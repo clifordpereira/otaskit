@@ -58,7 +58,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('admin.employees.edit', compact('employee'));
     }
 
     /**
@@ -66,7 +66,19 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            // 'email' => 'required|unique:employees|max:100',
+            'mobile_no' => 'alpha_num',
+            'department' => 'string',
+            'status' => 'required|numeric',
+        ]);
+
+        $employee->update($validated);
+
+        // The blog post is valid...
+
+        return redirect('/employees');
     }
 
     /**
@@ -74,6 +86,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return redirect('/employees');
     }
 }
